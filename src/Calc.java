@@ -2,43 +2,43 @@ public class Calc {
     int n;
     int memory;
 
-    Calc(int tall){
+    Calc(int tall) {
         n = tall;
     }
 
-    double add(int tall){
+    double add(int tall) {
         return n = n + tall;
     }
 
-    double sub(int tall){
-        return n = n-tall;
+    double sub(int tall) {
+        return n = n - tall;
     }
 
-    double div(int tall){
-        return n = n/tall;
+    double div(int tall) {
+        return n = n / tall;
     }
 
-    double mul(int tall){
-        return n = n*tall;
+    double mul(int tall) {
+        return n = n * tall;
     }
 
-    void clear(){
+    void clear() {
         n = 0;
     }
 
-    void equal(){
+    void equal() {
         System.out.println(n);
     }
 
-    void showMemory(){
+    void showMemory() {
         System.out.println(memory);
     }
 
-    void store(){
+    void store() {
         memory = n + memory;
     }
 
-    void recall(){
+    void recall() {
         memory = memory - n;
     }
 }
