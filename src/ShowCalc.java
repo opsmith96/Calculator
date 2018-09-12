@@ -63,6 +63,24 @@ public class ShowCalc implements ActionListener {
         if (e.getSource() == addBtn) {
             display.setText("+");
         }
+        if (e.getSource() == eqBtn) {
+            display.setText("=");
+        }
+        if (e.getSource() == del) {
+            display.setText("Dont think we need this btn");
+        }
+        if (e.getSource() == clr) {
+            display.setText(" ");
+        }
+        if (e.getSource() == mPlussBtn) {
+            display.setText("M+");
+        }
+        if (e.getSource() == mMinusBtn) {
+            display.setText("M_");
+        }
+        if (e.getSource() == mBtn) {
+            display.setText("M");
+        }
     }
 
     public void makeButtons() {
