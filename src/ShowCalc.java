@@ -52,6 +52,18 @@ public class ShowCalc implements ActionListener {
         if (e.getSource() == zero) {
             display.setText("0");
         }
+        if (e.getSource() == divBtn) {
+            display.setText("/");
+        }
+        if (e.getSource() == mulBtn) {
+            display.setText("*");
+        }
+        if (e.getSource() == subBtn) {
+            display.setText("-");
+        }
+        if (e.getSource() == addBtn) {
+            display.setText("+");
+        }
     }
 
     public void makeButtons() {
