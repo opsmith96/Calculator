@@ -19,58 +19,91 @@ public class ShowCalc implements ActionListener {
 
 
     }
-
+    String operator = "0";
+    String number = "0";
     public void actionPerformed(ActionEvent e) {
+
         if (e.getSource() == one) {
-            display.setText("1");
+            display.setText(display.getText().concat("1"));
+
         }
         if (e.getSource() == two) {
-            display.setText("2");
+            display.setText(display.getText().concat("2"));
         }
         if (e.getSource() == three) {
-            display.setText("3");
+            display.setText(display.getText().concat("3"));
         }
         if (e.getSource() == four) {
-            display.setText("4");
+            display.setText(display.getText().concat("4"));
         }
         if (e.getSource() == five) {
-            display.setText("5");
+            display.setText(display.getText().concat("5"));
         }
         if (e.getSource() == six) {
-            display.setText("6");
+            display.setText(display.getText().concat("6"));
         }
         if (e.getSource() == seven) {
-            display.setText("7");
+            display.setText(display.getText().concat("7"));
         }
         if (e.getSource() == eight) {
-            display.setText("8");
+            display.setText(display.getText().concat("8"));
         }
         if (e.getSource() == nine) {
-            display.setText("9");
+            display.setText(display.getText().concat("9"));
         }
         if (e.getSource() == zero) {
-            display.setText("0");
+            display.setText(display.getText().concat("0"));
         }
         if (e.getSource() == divBtn) {
+            number = display.getText();
             display.setText("/");
+            operator = display.getText();
         }
         if (e.getSource() == mulBtn) {
+            number = display.getText();
             display.setText("*");
+            operator = display.getText();
+
         }
         if (e.getSource() == subBtn) {
+            number = display.getText();
             display.setText("-");
+            operator = display.getText();
+
         }
         if (e.getSource() == addBtn) {
+            number = display.getText();
             display.setText("+");
+            operator = display.getText();
+
         }
         if (e.getSource() == eqBtn) {
-            display.setText("=");
+            int numberA = Integer.parseInt(number);
+            int numberB = Integer.parseInt(display.getText().substring(1));
+            if(operator.equals("+")) {
+                int result = numberA + numberB;
+                display.setText(Integer.toString(result));
+            }
+            if(operator.equals("-")) {
+                int result = numberA - numberB;
+                display.setText(Integer.toString(result));
+            }
+            if(operator.equals("*")) {
+                int result = numberA * numberB;
+                display.setText(Integer.toString(result));
+            }
+            if(operator.equals("/")) {
+                int result = numberA / numberB;
+                display.setText(Integer.toString(result));
+            }
         }
         if (e.getSource() == del) {
             display.setText("Dont think we need this btn");
         }
         if (e.getSource() == clr) {
-            display.setText(" ");
+            display.setText("");
+            number = "0";
+            operator = "0";
         }
         if (e.getSource() == mPlussBtn) {
             display.setText("M+");
