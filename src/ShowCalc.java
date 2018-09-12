@@ -28,6 +28,30 @@ public class ShowCalc implements ActionListener {
         if (e.getSource() == two) {
             display.setText("2");
         }
+        if (e.getSource() == three) {
+            display.setText("3");
+        }
+        if (e.getSource() == four) {
+            display.setText("4");
+        }
+        if (e.getSource() == five) {
+            display.setText("5");
+        }
+        if (e.getSource() == six) {
+            display.setText("6");
+        }
+        if (e.getSource() == seven) {
+            display.setText("7");
+        }
+        if (e.getSource() == eight) {
+            display.setText("8");
+        }
+        if (e.getSource() == nine) {
+            display.setText("9");
+        }
+        if (e.getSource() == zero) {
+            display.setText("0");
+        }
     }
 
     public void makeButtons() {
