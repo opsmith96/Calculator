@@ -11,6 +11,7 @@ public class ShowCalc implements ActionListener {
 
     public ShowCalc() {
         this.makeButtons();
+        window.requestFocus();
 
     }
 
@@ -21,10 +22,10 @@ public class ShowCalc implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==one) {
+        if (e.getSource() == one) {
             display.setText("1");
         }
-        if(e.getSource()==two) {
+        if (e.getSource() == two) {
             display.setText("2");
         }
     }
