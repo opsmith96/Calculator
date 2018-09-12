@@ -12,7 +12,6 @@ public class ShowCalc implements ActionListener {
     public ShowCalc() {
         this.makeButtons();
         window.requestFocus();
-
     }
 
     public static void main(String[] args) {
@@ -145,6 +144,10 @@ public class ShowCalc implements ActionListener {
         window.add(mulBtn);
         window.add(mBtn);
 
+
+        display.setHorizontalAlignment(JTextField.RIGHT);
+        Font font1 = new Font("SansSerif", Font.PLAIN, 20);
+        display.setFont(font1);
         window.setLayout(null);
         window.setVisible(true);
         window.setSize(300, 500);
