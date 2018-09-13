@@ -7,28 +7,24 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 public class ShowCalc implements ActionListener {
     private static JFrame window;
     private JTextField display;
-    private JButton one, two, three, four, five, six, seven, eight, nine, zero, divBtn, mulBtn, addBtn, subBtn, del, clr, eqBtn, mMinusBtn, mPlussBtn, mBtn, mClrBtn;
+    private JButton one, two, three, four, five, six, seven, eight, nine, zero, divBtn,
+            mulBtn, addBtn, subBtn,  clr, eqBtn, mMinusBtn, mPlussBtn, mBtn, mClrBtn;
     private String operator = "0";
     private String number = "0";
-    private int mtotal = 0;
-
-    public ShowCalc() {
-        this.makeButtons();
-        window.requestFocus();
-    }
+    private long mtotal = 0;
 
     public static void main(String[] args) {
         ShowCalc calculator = new ShowCalc();
-
-
     }
 
+    public ShowCalc() {
+        this.makeGUI();
+    }
 
+    // Checks with button is clicked and preforms the appropriate action
     public void actionPerformed(ActionEvent e) {
-
         if (e.getSource() == one) {
             display.setText(display.getText().concat("1"));
-
         }
         if (e.getSource() == two) {
             display.setText(display.getText().concat("2"));
@@ -66,42 +62,63 @@ public class ShowCalc implements ActionListener {
             number = display.getText();
             display.setText("*");
             operator = display.getText();
-
         }
         if (e.getSource() == subBtn) {
             number = display.getText();
             display.setText("-");
             operator = display.getText();
-
         }
         if (e.getSource() == addBtn) {
             number = display.getText();
             display.setText("+");
             operator = display.getText();
-
         }
         if (e.getSource() == eqBtn) {
-            int numberA = Integer.parseInt(number);
-            int numberB = Integer.parseInt(display.getText().substring(1));
-            if(operator.equals("+")) {
-                int result = numberA + numberB;
-                display.setText(Integer.toString(result));
+            long numberA = 0;
+            long numberB = 0;
+            try {
+                numberA = Long.parseLong(number);
+                numberB = Long.parseLong(display.getText().substring(1));
+            } catch (Exception ex) {
+                display.setText("Number too large");
+                return;
             }
-            if(operator.equals("-")) {
-                int result = numberA - numberB;
-                display.setText(Integer.toString(result));
+            if (operator.equals("+")) {
+                try {
+                    long result = numberA + numberB;
+                    display.setText(Long.toString(result));
+                } catch (Exception ex) {
+                    display.setText("Number too large");
+                    return;
+                }
             }
-            if(operator.equals("*")) {
-                int result = numberA * numberB;
-                display.setText(Integer.toString(result));
+            if (operator.equals("-")) {
+                try {
+                    long result = numberA - numberB;
+                    display.setText(Long.toString(result));
+                } catch (Exception ex) {
+                    display.setText("Number too large");
+                    return;
+                }
             }
-            if(operator.equals("/")) {
-                int result = numberA / numberB;
-                display.setText(Integer.toString(result));
+            if (operator.equals("*")) {
+                try {
+                    long result = numberA * numberB;
+                    display.setText(Long.toString(result));
+                } catch (Exception ex) {
+                    display.setText("Number too large");
+                    return;
+                }
             }
-        }
-        if (e.getSource() == del) {
-            display.setText("Dont think we need this btn");
+            if (operator.equals("/")) {
+                try {
+                    long result = numberA / numberB;
+                    display.setText(Long.toString(result));
+                } catch (Exception ex) {
+                    display.setText("Number too large");
+                    return;
+                }
+            }
         }
         if (e.getSource() == clr) {
             display.setText("");
@@ -109,23 +126,26 @@ public class ShowCalc implements ActionListener {
             operator = "0";
         }
         if (e.getSource() == mPlussBtn) {
-            mtotal = mtotal + Integer.parseInt(display.getText());
+            mtotal = mtotal + Long.parseLong(display.getText());
         }
         if (e.getSource() == mMinusBtn) {
-            mtotal = mtotal - Integer.parseInt(display.getText());
+            mtotal = mtotal - Long.parseLong(display.getText());
         }
         if (e.getSource() == mBtn) {
-            display.setText(Integer.toString(mtotal));
+            display.setText(Long.toString(mtotal));
         }
         if (e.getSource() == mClrBtn) {
             mtotal = 0;
         }
     }
 
-    private void makeButtons() {
+    // Makes the GUI
+    private void makeGUI() {
+        Font font1 = new Font("SansSerif", Font.PLAIN, 20);
+
+        // Makes the frame, the textfield and the buttons
         window = new JFrame("Calculator");
         display = new JTextField();
-
         one = new JButton("1");
         two = new JButton("2");
         three = new JButton("3");
@@ -136,19 +156,18 @@ public class ShowCalc implements ActionListener {
         eight = new JButton("8");
         nine = new JButton("9");
         zero = new JButton("0");
-
         divBtn = new JButton("/");
         mulBtn = new JButton("*");
         subBtn = new JButton("-");
         addBtn = new JButton("+");
         eqBtn = new JButton("=");
-        del = new JButton("Delete");
         clr = new JButton("Clear");
         mPlussBtn = new JButton("M+");
         mMinusBtn = new JButton("M-");
         mBtn = new JButton("M");
         mClrBtn = new JButton("Mclr");
 
+        // Sets position and size on all items
         display.setBounds(0, 200, 300, 60);
         one.setBounds(0, 370, 50, 50);
         two.setBounds(50, 370, 50, 50);
@@ -160,7 +179,6 @@ public class ShowCalc implements ActionListener {
         eight.setBounds(50, 270, 50, 50);
         nine.setBounds(100, 270, 50, 50);
         zero.setBounds(0, 420, 100, 50);
-
         mBtn.setBounds(150, 270, 50, 50);
         mClrBtn.setBounds(150, 320, 50, 50);
         mPlussBtn.setBounds(150, 370, 50, 50);
@@ -172,6 +190,7 @@ public class ShowCalc implements ActionListener {
         eqBtn.setBounds(200, 370, 100, 100);
         clr.setBounds(100, 420, 50, 50);
 
+        // Add ActionListner to each button
         one.addActionListener(this);
         two.addActionListener(this);
         three.addActionListener(this);
@@ -182,19 +201,18 @@ public class ShowCalc implements ActionListener {
         eight.addActionListener(this);
         nine.addActionListener(this);
         zero.addActionListener(this);
-
         divBtn.addActionListener(this);
         mulBtn.addActionListener(this);
         subBtn.addActionListener(this);
         addBtn.addActionListener(this);
         eqBtn.addActionListener(this);
-        del.addActionListener(this);
         clr.addActionListener(this);
         mPlussBtn.addActionListener(this);
         mMinusBtn.addActionListener(this);
         mBtn.addActionListener(this);
         mClrBtn.addActionListener(this);
 
+        // Adds all buttons and textfields to the window
         window.add(display);
         window.add(zero);
         window.add(one);
@@ -217,9 +235,9 @@ public class ShowCalc implements ActionListener {
         window.add(mBtn);
         window.add(mClrBtn);
 
-
+        //
+        display.setEditable(false);
         display.setHorizontalAlignment(JTextField.RIGHT);
-        Font font1 = new Font("SansSerif", Font.PLAIN, 20);
         display.setFont(font1);
         window.setLayout(null);
         window.setVisible(true);
@@ -228,5 +246,7 @@ public class ShowCalc implements ActionListener {
         window.setLocationRelativeTo(null);
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setResizable(false);
+        window.requestFocus();
+
     }
 }
