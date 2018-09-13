@@ -3,3 +3,7 @@ out/production/Calculator/ShowCalc.class
 out/production/Calculator/Calc.class
 .idea/workspace.xml
 .idea/vcs.xml
+.aux
+.log
+.tex
+.gz
