@@ -7,7 +7,10 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 public class ShowCalc implements ActionListener {
     private static JFrame window;
     private JTextField display;
-    private JButton one, two, three, four, five, six, seven, eight, nine, zero, divBtn, mulBtn, addBtn, subBtn, del, clr, eqBtn, mMinusBtn, mPlussBtn, mBtn;
+    private JButton one, two, three, four, five, six, seven, eight, nine, zero, divBtn, mulBtn, addBtn, subBtn, del, clr, eqBtn, mMinusBtn, mPlussBtn, mBtn, mClrBtn;
+    private String operator = "0";
+    private String number = "0";
+    private int mtotal = 0;
 
     public ShowCalc() {
         this.makeButtons();
@@ -19,8 +22,8 @@ public class ShowCalc implements ActionListener {
 
 
     }
-    String operator = "0";
-    String number = "0";
+
+
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == one) {
@@ -106,17 +109,20 @@ public class ShowCalc implements ActionListener {
             operator = "0";
         }
         if (e.getSource() == mPlussBtn) {
-            display.setText("M+");
+            mtotal = mtotal + Integer.parseInt(display.getText());
         }
         if (e.getSource() == mMinusBtn) {
-            display.setText("M_");
+            mtotal = mtotal - Integer.parseInt(display.getText());
         }
         if (e.getSource() == mBtn) {
-            display.setText("M");
+            display.setText(Integer.toString(mtotal));
+        }
+        if (e.getSource() == mClrBtn) {
+            mtotal = 0;
         }
     }
 
-    public void makeButtons() {
+    private void makeButtons() {
         window = new JFrame("Calculator");
         display = new JTextField();
 
@@ -141,6 +147,7 @@ public class ShowCalc implements ActionListener {
         mPlussBtn = new JButton("M+");
         mMinusBtn = new JButton("M-");
         mBtn = new JButton("M");
+        mClrBtn = new JButton("Mclr");
 
         display.setBounds(0, 200, 300, 60);
         one.setBounds(0, 370, 50, 50);
@@ -154,9 +161,10 @@ public class ShowCalc implements ActionListener {
         nine.setBounds(100, 270, 50, 50);
         zero.setBounds(0, 420, 100, 50);
 
-        mBtn.setBounds(150, 270, 50, 100);
-        mMinusBtn.setBounds(150, 420, 50, 50);
+        mBtn.setBounds(150, 270, 50, 50);
+        mClrBtn.setBounds(150, 320, 50, 50);
         mPlussBtn.setBounds(150, 370, 50, 50);
+        mMinusBtn.setBounds(150, 420, 50, 50);
         divBtn.setBounds(200, 320, 50, 50);
         mulBtn.setBounds(250, 320, 50, 50);
         addBtn.setBounds(250, 270, 50, 50);
@@ -185,6 +193,7 @@ public class ShowCalc implements ActionListener {
         mPlussBtn.addActionListener(this);
         mMinusBtn.addActionListener(this);
         mBtn.addActionListener(this);
+        mClrBtn.addActionListener(this);
 
         window.add(display);
         window.add(zero);
@@ -206,6 +215,7 @@ public class ShowCalc implements ActionListener {
         window.add(subBtn);
         window.add(mulBtn);
         window.add(mBtn);
+        window.add(mClrBtn);
 
 
         display.setHorizontalAlignment(JTextField.RIGHT);
