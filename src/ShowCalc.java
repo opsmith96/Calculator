@@ -5,23 +5,21 @@ import java.awt.event.*;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class ShowCalc implements ActionListener {
-    private static JFrame window;
     private JTextField display;
-    private JButton one, two, three, four, five, six, seven, eight, nine, zero, divBtn,
-            mulBtn, addBtn, subBtn,  clr, eqBtn, mMinusBtn, mPlussBtn, mBtn, mClrBtn;
+    private JButton one, two, three, four, five, six, seven, eight, nine, zero, divideBtn,
+            multiplyBtn, addBtn, subtractBtn, clearBtn, equalsBtn, memoryMinusBtn, memoryPlussBtn,
+            memoryBtn, clearMemoryBtn;
     private String operator = "0";
     private String number = "0";
     private long mtotal = 0;
+    private Font font1 = new Font("SansSerif", Font.PLAIN, 20);
 
     public static void main(String[] args) {
         ShowCalc calculator = new ShowCalc();
+        calculator.makeGUI();
     }
 
-    public ShowCalc() {
-        this.makeGUI();
-    }
-
-    // Checks with button is clicked and preforms the appropriate action
+    // Checks witch button is clicked and preforms the appropriate action
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == one) {
             display.setText(display.getText().concat("1"));
@@ -53,17 +51,17 @@ public class ShowCalc implements ActionListener {
         if (e.getSource() == zero) {
             display.setText(display.getText().concat("0"));
         }
-        if (e.getSource() == divBtn) {
+        if (e.getSource() == divideBtn) {
             number = display.getText();
             display.setText("/");
             operator = display.getText();
         }
-        if (e.getSource() == mulBtn) {
+        if (e.getSource() == multiplyBtn) {
             number = display.getText();
             display.setText("*");
             operator = display.getText();
         }
-        if (e.getSource() == subBtn) {
+        if (e.getSource() == subtractBtn) {
             number = display.getText();
             display.setText("-");
             operator = display.getText();
@@ -73,9 +71,9 @@ public class ShowCalc implements ActionListener {
             display.setText("+");
             operator = display.getText();
         }
-        if (e.getSource() == eqBtn) {
-            long numberA = 0;
-            long numberB = 0;
+        if (e.getSource() == equalsBtn) {
+            long numberA;
+            long numberB;
             try {
                 numberA = Long.parseLong(number);
                 numberB = Long.parseLong(display.getText().substring(1));
@@ -120,31 +118,29 @@ public class ShowCalc implements ActionListener {
                 }
             }
         }
-        if (e.getSource() == clr) {
+        if (e.getSource() == clearBtn) {
             display.setText("");
             number = "0";
             operator = "0";
         }
-        if (e.getSource() == mPlussBtn) {
+        if (e.getSource() == memoryPlussBtn) {
             mtotal = mtotal + Long.parseLong(display.getText());
         }
-        if (e.getSource() == mMinusBtn) {
+        if (e.getSource() == memoryMinusBtn) {
             mtotal = mtotal - Long.parseLong(display.getText());
         }
-        if (e.getSource() == mBtn) {
+        if (e.getSource() == memoryBtn) {
             display.setText(Long.toString(mtotal));
         }
-        if (e.getSource() == mClrBtn) {
+        if (e.getSource() == clearMemoryBtn) {
             mtotal = 0;
         }
     }
 
     // Makes the GUI
     private void makeGUI() {
-        Font font1 = new Font("SansSerif", Font.PLAIN, 20);
-
         // Makes the frame, the textfield and the buttons
-        window = new JFrame("Calculator");
+        JFrame window = new JFrame("Calculator");
         display = new JTextField();
         one = new JButton("1");
         two = new JButton("2");
@@ -156,16 +152,16 @@ public class ShowCalc implements ActionListener {
         eight = new JButton("8");
         nine = new JButton("9");
         zero = new JButton("0");
-        divBtn = new JButton("/");
-        mulBtn = new JButton("*");
-        subBtn = new JButton("-");
+        divideBtn = new JButton("/");
+        multiplyBtn = new JButton("*");
+        subtractBtn = new JButton("-");
         addBtn = new JButton("+");
-        eqBtn = new JButton("=");
-        clr = new JButton("Clear");
-        mPlussBtn = new JButton("M+");
-        mMinusBtn = new JButton("M-");
-        mBtn = new JButton("M");
-        mClrBtn = new JButton("Mclr");
+        equalsBtn = new JButton("=");
+        clearBtn = new JButton("Clear");
+        memoryPlussBtn = new JButton("M+");
+        memoryMinusBtn = new JButton("M-");
+        memoryBtn = new JButton("M");
+        clearMemoryBtn = new JButton("Mclr");
 
         // Sets position and size on all items
         display.setBounds(0, 200, 300, 60);
@@ -179,16 +175,16 @@ public class ShowCalc implements ActionListener {
         eight.setBounds(50, 270, 50, 50);
         nine.setBounds(100, 270, 50, 50);
         zero.setBounds(0, 420, 100, 50);
-        mBtn.setBounds(150, 270, 50, 50);
-        mClrBtn.setBounds(150, 320, 50, 50);
-        mPlussBtn.setBounds(150, 370, 50, 50);
-        mMinusBtn.setBounds(150, 420, 50, 50);
-        divBtn.setBounds(200, 320, 50, 50);
-        mulBtn.setBounds(250, 320, 50, 50);
+        memoryBtn.setBounds(150, 270, 50, 50);
+        clearMemoryBtn.setBounds(150, 320, 50, 50);
+        memoryPlussBtn.setBounds(150, 370, 50, 50);
+        memoryMinusBtn.setBounds(150, 420, 50, 50);
+        divideBtn.setBounds(200, 320, 50, 50);
+        multiplyBtn.setBounds(250, 320, 50, 50);
         addBtn.setBounds(250, 270, 50, 50);
-        subBtn.setBounds(200, 270, 50, 50);
-        eqBtn.setBounds(200, 370, 100, 100);
-        clr.setBounds(100, 420, 50, 50);
+        subtractBtn.setBounds(200, 270, 50, 50);
+        equalsBtn.setBounds(200, 370, 100, 100);
+        clearBtn.setBounds(100, 420, 50, 50);
 
         // Add ActionListner to each button
         one.addActionListener(this);
@@ -201,16 +197,16 @@ public class ShowCalc implements ActionListener {
         eight.addActionListener(this);
         nine.addActionListener(this);
         zero.addActionListener(this);
-        divBtn.addActionListener(this);
-        mulBtn.addActionListener(this);
-        subBtn.addActionListener(this);
+        divideBtn.addActionListener(this);
+        multiplyBtn.addActionListener(this);
+        subtractBtn.addActionListener(this);
         addBtn.addActionListener(this);
-        eqBtn.addActionListener(this);
-        clr.addActionListener(this);
-        mPlussBtn.addActionListener(this);
-        mMinusBtn.addActionListener(this);
-        mBtn.addActionListener(this);
-        mClrBtn.addActionListener(this);
+        equalsBtn.addActionListener(this);
+        clearBtn.addActionListener(this);
+        memoryPlussBtn.addActionListener(this);
+        memoryMinusBtn.addActionListener(this);
+        memoryBtn.addActionListener(this);
+        clearMemoryBtn.addActionListener(this);
 
         // Adds all buttons and textfields to the window
         window.add(display);
@@ -224,18 +220,18 @@ public class ShowCalc implements ActionListener {
         window.add(seven);
         window.add(eight);
         window.add(nine);
-        window.add(clr);
-        window.add(mMinusBtn);
-        window.add(mPlussBtn);
-        window.add(eqBtn);
-        window.add(divBtn);
+        window.add(clearBtn);
+        window.add(memoryMinusBtn);
+        window.add(memoryPlussBtn);
+        window.add(equalsBtn);
+        window.add(divideBtn);
         window.add(addBtn);
-        window.add(subBtn);
-        window.add(mulBtn);
-        window.add(mBtn);
-        window.add(mClrBtn);
+        window.add(subtractBtn);
+        window.add(multiplyBtn);
+        window.add(memoryBtn);
+        window.add(clearMemoryBtn);
 
-        //
+        // Sets some properties to the Window, font, size etc..
         display.setEditable(false);
         display.setHorizontalAlignment(JTextField.RIGHT);
         display.setFont(font1);
